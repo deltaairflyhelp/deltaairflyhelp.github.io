@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Delta Air Lines — Book Flights Online</title>
+
+  <!-- Canonical & Basics -->
+  <link rel="canonical" href="https://deltaairflyhelp.github.io/">
+  <meta name="description" content="Book Delta flights fast with a clean, modern single-page design: search, select, and check out in minutes. Includes chatbot and FAQs." />
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#003A70" />
+
+  <!-- Preload hero image -->
+  <link rel="preload" as="image" href="https://deltaairflyhelp.github.io/delta-plane.jpg" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Delta Air Lines — Book Flights Online">
+  <meta property="og:description" content="Search, compare, and book in minutes. Seamless check-in, flexible changes, and a friendly chatbot if you get stuck.">
+  <meta property="og:url" content="https://deltaairflyhelp.github.io/">
+  <meta property="og:site_name" content="DeltaFlyHelp">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://deltaairflyhelp.github.io/delta-plane.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Delta Air Lines — Book Flights Online">
+  <meta name="twitter:description" content="Search, compare, and book in minutes. Seamless check-in, flexible changes, and a helpful chatbot if you get stuck.">
+  <meta name="twitter:image" content="https://deltaairflyhelp.github.io/delta-plane.jpg">
+
+  <!-- Performance hints -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="//images.unsplash.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root { color-scheme: light dark; }
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji'; }
+    .reveal { opacity: 0; transform: translateY(12px); transition: all .6s ease; }
+    .reveal.show { opacity: 1; transform: translateY(0); }
+
+    /* Navy overlay for hero */
+    .hero::before { content: ''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,28,64,.7),rgba(0,28,64,.35),rgba(0,28,64,.7)); z-index:0; }
+
+    /* NEW: Blur + dim the hero background image so text pops */
+    .hero-bg { filter: blur(10px) brightness(0.75); transform: scale(1.06); will-change: transform, filter; }
+
+    .chatbot-shadow { box-shadow: 0 10px 30px rgba(0,0,0,.18); }
+    .glass { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); background-color: rgba(255,255,255,.65); }
+    @media (prefers-color-scheme: dark){ .glass{ background-color: rgba(13,23,42,.6);} }
+
+    /* Delta palette vibes */
+    .delta-primary { background-image: linear-gradient(to right, #003A70, #001B44); }
+    .delta-accent  { background-image: linear-gradient(to right, #C8102E, #9E0B22); }
+    .delta-text    { color: #003A70; }
+  </style>
+
+  <!-- Schema.org: Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "DeltaFlyHelp",
+    "url": "https://deltaairflyhelp.github.io/",
+    "logo": "https://deltaairflyhelp.github.io/icon.png"
+  }
+  </script>
+
+  <!-- Schema.org: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {
+        "@type":"Question",
+        "name":"How to book a Delta ticket",
+        "acceptedAnswer":{"@type":"Answer","text":"Click Book Ticket → enter From/To, dates, and travelers → Search → choose a fare → add extras → pay securely → receive your confirmation code (PNR) by email."}
+      },
+      {
+        "@type":"Question",
+        "name":"Refund & cancellation policy (summary)",
+        "acceptedAnswer":{"@type":"Answer","text":"24-hour grace for many bookings; refundable fares go back to original payment; non-refundable fares often receive travel credit; airline schedule changes may qualify for rebooking/refund; no-shows may void the ticket."}
+      },
+      {
+        "@type":"Question",
+        "name":"Travel requirements",
+        "acceptedAnswer":{"@type":"Answer","text":"International travel usually needs a valid passport; domestic requires government ID. Visas/e-visas and health requirements depend on nationality and destination."}
+      },
+      {
+        "@type":"Question",
+        "name":"Online check-in",
+        "acceptedAnswer":{"@type":"Answer","text":"Opens 24 hours before departure. Use your confirmation code and last name to get a mobile boarding pass."}
+      },
+      {
+        "@type":"Question",
+        "name":"Change a booking",
+        "acceptedAnswer":{"@type":"Answer","text":"Most tickets can be changed by paying any fare difference. Some discounted fares may include change fees or restrictions."}
+      },
+      {
+        "@type":"Question",
+        "name":"Baggage basics",
+        "acceptedAnswer":{"@type":"Answer","text":"Typically 1 carry-on and 1 personal item (size/weight limits apply). Checked bag fees vary by route, cabin, and status."}
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-50">
+  <!-- Top Notification (promo bar) -->
+  <div class="w-full text-white text-sm delta-primary">
+    <div class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between">
+      <p class="opacity-95">US & international deals • 24/7 support • No booking fees</p>
+      <a href="https://deltaairflyhelp.github.io/" class="underline/30 hover:underline" target="_blank" rel="noopener">Book now</a>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-slate-900/60 border-b border-slate-200/60 dark:border-slate-800/60">
+    <nav class="max-w-7xl mx-auto px-4">
+      <div class="flex items-center justify-between h-16">
+        <a href="#home" class="flex items-center space-x-2 group">
+          <span class="inline-flex h-8 w-8 items-center justify-center rounded-xl delta-primary text-white font-bold">D</span>
+          <span class="font-semibold tracking-tight text-lg">Delta Air Lines</span>
+        </a>
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+          <a href="https://deltaairflyhelp.github.io/" target="_blank" rel="noopener" class="hover:text-[#003A70]">Book</a>
+          <a href="#deals" class="hover:text-[#003A70]">Deals</a>
+          <a href="#benefits" class="hover:text-[#003A70]">Why Us</a>
+          <a href="#faqs" class="hover:text-[#003A70]">FAQs</a>
+          <a href="#contact" class="hover:text-[#003A70]">Support</a>
+        </div>
+        <!-- CTA Buttons -->
+        <div class="hidden md:flex items-center gap-3">
+          <a href="https://deltaairflyhelp.github.io/" target="_blank" rel="noopener" class="px-4 py-2 rounded-xl delta-primary text-white font-semibold hover:brightness-110 transition">Book Ticket</a>
+          <a href="https://deltaairflyhelp.github.io/" target="_blank" rel="noopener" class="px-4 py-2 rounded-xl border border-[#003A70] text-[#003A70] font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 transition">See Offers</a>
+          <a href="https://deltaairflyhelp.github.io/" target="_blank" rel="noopener" class="px-4 py-2 rounded-xl delta-accent text-white font-semibold hover:brightness-110 transition">Get Support</a>
+        </div>
+        <button id="menuBtn" class="md:hidden p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" aria-label="Open menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+      <!-- Mobile menu -->
+      <div id="mobileMenu" class="md:hidden hidden py-3 border-t border-slate-200 dark:border-slate-800">
+        <a href="https://deltaairflyhelp.github.io/" target="_blank" rel="noopener" class="block py-2">Book</a>
+        <a href="#deals" class="block py-2">Deals</a>
+        <a href="#benefits" class="block py-2">Why Us</a>
+        <a href="#faqs" class="block py-2">FAQs</a>
+        <a href="#contact" class="block py-2">Support</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="home" class="relative hero">
+    <!-- Blurred + dimmed banner background -->
+    <div class="absolute inset-0 -z-10 bg-cover bg-center hero-bg" style="background-image:url('delta-plane.jpg');"></div>
+    <div class="max-w-7xl mx-auto px-4 py-24 md:py-32 relative">
+      <div class="max-w-2xl text-white space-y-6">
+        <span class="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold bg-white/10 ring-1 ring-white/30">
+          <span class="inline-block h-2 w-2 rounded-full bg-[#C8102E] animate-pulse"></span> 24/7 Support • No booking fees
+        </span>
+        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">Fly confidently with Delta Air Lines</h1>
+        <p class="text-white/90 text-lg md:text-xl">Search, compare, and book in minutes. Smooth check-in, flexible changes, and a helpful chatbot if you get stuck.</p>
+        <div class="flex flex-wrap items-center gap-3">
+          <a href="https://deltaairflyhelp.github.io/" target="_blank" rel="noopener" class="px-6 py-3 rounded-xl bg-white text-slate-900 font-semibold shadow hover:shadow-lg transition">Book Ticket</a>
+          <a href="https://deltaairflyhelp.github.io/" target="_blank" rel="noopener" class="px-6 py-3 rounded-xl text-white font-semibold delta-primary hover:brightness-110 transition">See Offers</a>
+          <a href="https://deltaairflyhelp.github.io/" target="_blank" rel="noopener" class="px-6 py-3 rounded-xl text-white font-semibold delta-accent hover:brightness-110 transition">Get Support</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Deals -->
+  <section id="deals" class="max-w-7xl mx-auto px-4 py-16 reveal">
+    <div class="flex items-center justify-between flex-wrap gap-3">
+      <h2 class="text-2xl md:text-3xl font-bold">Trending deals</h2>
+      <a href="https://deltaairflyhelp.github.io/" target="_blank" rel="noopener" class="text-[#003A70] hover:underline">Book ticket →</a>
+    </div>
+    <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800">
+        <img alt="Atlanta" class="w-full h-40 object-cover" src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1200&auto=format&fit=crop"/>
+        <div class="p-4 bg-white dark:bg-slate-800/70">
+          <h3 class="font-semibold">New York → Atlanta</h3>
+          <p class="text-slate-500 text-sm">from $159</p>
+        </div>
+      </div>
+      <div class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800">
+        <img alt="Los Angeles" class="w-full h-40 object-cover" src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=1200&auto=format&fit=crop"/>
+        <div class="p-4 bg-white dark:bg-slate-800/70">
+          <h3 class="font-semibold">Seattle → Los Angeles</h3>
+          <p class="text-slate-500 text-sm">from $129</p>
+        </div>
+      </div>
+      <div class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800">
+        <img alt="Amsterdam" class="w-full h-40 object-cover" src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?q=80&w=1200&auto=format&fit=crop"/>
+        <div class="p-4 bg-white dark:bg-slate-800/70">
+          <h3 class="font-semibold">Boston → Amsterdam</h3>
+          <p class="text-slate-500 text-sm">from $469</p>
+        </div>
+      </div>
+      <div class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800">
+        <img alt="Tokyo" class="w-full h-40 object-cover" src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=1200&auto=format&fit=crop"/>
+        <div class="p-4 bg-white dark:bg-slate-800/70">
+          <h3 class="font-semibold">Minneapolis → Tokyo</h3>
+          <p class="text-slate-500 text-sm">from $599</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section id="benefits" class="max-w-7xl mx-auto px-4 py-16 reveal">
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div>
+        <h2 class="text-2xl md:text-3xl font-bold">Why travelers choose Delta Air Lines</h2>
+        <p class="mt-2 text-slate-600 dark:text-slate-300">Fast search, flexible fares, and friendly support built into one polished page.</p>
+        <ul class="mt-6 space-y-3">
+          <li class="flex items-start gap-3"><span class="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#C8102E] text-white">✓</span><span><strong>Flexible tickets</strong> — change or cancel with minimal fees.</span></li>
+          <li class="flex items-start gap-3"><span class="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#C8102E] text-white">✓</span><span><strong>Seamless check-in</strong> — mobile boarding passes in seconds.</span></li>
+          <li class="flex items-start gap-3"><span class="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#C8102E] text-white">✓</span><span><strong>Transparent pricing</strong> — no hidden booking fees.</span></li>
+        </ul>
+      </div>
+      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-800/70">
+        <div class="grid sm:grid-cols-3 gap-4 text-center">
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/40">
+            <div class="text-3xl font-extrabold">30k+</div>
+            <div class="text-xs uppercase tracking-wide text-slate-500">Daily routes</div>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/40">
+            <div class="text-3xl font-extrabold">94%</div>
+            <div class="text-xs uppercase tracking-wide text-slate-500">On-time</div>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/40">
+            <div class="text-3xl font-extrabold">4.7★</div>
+            <div class="text-xs uppercase tracking-wide text-slate-500">Customer rating</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Help Center -->
+  <section id="faqs" class="max-w-5xl mx-auto px-4 py-16 reveal">
+    <div class="text-center max-w-2xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-bold">Help Center</h2>
+      <p class="text-slate-600 dark:text-slate-300 mt-2">Straightforward guides for booking, refunds, travel requirements, and more.</p>
+    </div>
+    <div class="mt-8 space-y-3">
+      <details class="group rounded-2xl border border-slate-200 dark:border-slate-800 p-4 bg-white dark:bg-slate-800/70" open>
+        <summary class="cursor-pointer list-none flex items-center justify-between">
+          <span class="font-semibold">How to book a ticket</span>
+          <span class="transition group-open:rotate-180">▾</span>
+        </summary>
+        <ol class="mt-3 space-y-2 text-slate-700 dark:text-slate-300 list-decimal list-inside">
+          <li>Click <strong>Book Ticket</strong> (top right or in the banner) to open our booking portal.</li>
+          <li>Enter <em>From</em>, <em>To</em>, dates, and travelers → press <strong>Search</strong>.</li>
+          <li>Pick your flight and fare; tap <strong>Continue</strong>.</li>
+          <li>Add seats & baggage if needed; review the total price.</li>
+          <li>Enter passenger details exactly as per passport/ID.</li>
+          <li>Complete payment securely. You’ll receive an email with your <strong>confirmation code (PNR)</strong>.</li>
+        </ol>
+        <p class="mt-3 text-sm text-slate-500">Tip: Names must match government ID. Prices can change until payment is finished.</p>
+      </details>
+
+      <details class="group rounded-2xl border border-slate-200 dark:border-slate-800 p-4 bg-white dark:bg-slate-800/70">
+        <summary class="cursor-pointer list-none flex items-center justify-between">
+          <span class="font-semibold">Refund & cancellation policy (summary)</span>
+          <span class="transition group-open:rotate-180">▾</span>
+        </summary>
+        <ul class="mt-3 space-y-2 text-slate-700 dark:text-slate-300 list-disc list-inside">
+          <li><strong>24-hour grace</strong>: Many bookings can be cancelled within 24 hours for a full refund if made 2+ days before departure.</li>
+          <li><strong>Refundable fares</strong>: Fully refundable to the original payment method.</li>
+          <li><strong>Non-refundable fares</strong>: Receive a travel credit minus any fees; credits can be used on future trips.</li>
+          <li><strong>Schedule change</strong>: If the airline changes/cancels your flight, you may be rebooked or refunded per airline rules.</li>
+          <li><strong>No-show</strong>: Missing the flight may void the ticket; contact support ASAP for options.</li>
+        </ul>
+        <p class="mt-3 text-sm text-slate-500">Always check your fare rules on the payment page—those terms control.</p>
+      </details>
+
+      <details class="group rounded-2xl border border-slate-200 dark:border-slate-800 p-4 bg-white dark:bg-slate-800/70">
+        <summary class="cursor-pointer list-none flex items-center justify-between">
+          <span class="font-semibold">Travel requirements</span>
+          <span class="transition group-open:rotate-180">▾</span>
+        </summary>
+        <div class="mt-3 text-slate-700 dark:text-slate-300 space-y-2">
+          <p><strong>Documents</strong>: Valid passport for international travel; government ID for domestic. Visas/e-visas may be required based on nationality and destination.</p>
+          <p><strong>Health</strong>: Some countries require vaccinations or forms. Check official sources before you fly.</p>
+          <p><strong>Baggage</strong>: Standard carry-on + personal item; checked bag rules depend on route and fare.</p>
+        </div>
+      </details>
+
+      <details class="group rounded-2xl border border-slate-200 dark:border-slate-800 p-4 bg-white dark:bg-slate-800/70">
+        <summary class="cursor-pointer list-none flex items-center justify-between">
+          <span class="font-semibold">Online check-in</span>
+          <span class="transition group-open:rotate-180">▾</span>
+        </summary>
+        <p class="mt-3 text-slate-700 dark:text-slate-300">Opens 24 hours before departure. Use your confirmation code and last name to get a mobile boarding pass. Arrive early if you need to drop bags or verify documents.</p>
+      </details>
+
+      <details class="group rounded-2xl border border-slate-200 dark:border-slate-800 p-4 bg-white dark:bg-slate-800/70">
+        <summary class="cursor-pointer list-none flex items-center justify-between">
+          <span class="font-semibold">Change a booking</span>
+          <span class="transition group-open:rotate-180">▾</span>
+        </summary>
+        <p class="mt-3 text-slate-700 dark:text-slate-300">Most tickets can be changed by paying any fare difference. Some discounted fares may have change fees or restrictions.</p>
+      </details>
+
+      <details class="group rounded-2xl border border-slate-200 dark:border-slate-800 p-4 bg-white dark:bg-slate-800/70">
+        <summary class="cursor-pointer list-none flex items-center justify-between">
+          <span class="font-semibold">Baggage basics</span>
+          <span class="transition group-open:rotate-180">▾</span>
+        </summary>
+        <ul class="mt-3 space-y-1 text-slate-700 dark:text-slate-300 list-disc list-inside">
+          <li>Carry-on: 1 standard bag + 1 personal item (size/weight limits apply).</li>
+          <li>Checked bags: Fees and allowances vary by route, cabin, and status.</li>
+          <li>Special items (strollers, sports gear, instruments) may have additional rules—contact support.</li>
+        </ul>
+      </details>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="max-w-7xl mx-auto px-4 py-16 reveal">
+    <div class="grid lg:grid-cols-3 gap-10">
+      <div class="lg:col-span-2">
+        <h2 class="text-2xl md:text-3xl font-bold">Need help?</h2>
+        <p class="text-slate-600 dark:text-slate-300 mt-2">Use the chat bubble, or email <a class="text-[#003A70]" href="mailto:support@delta.example">support@delta.example</a>. We reply quickly.</p>
+        <div class="mt-6 grid sm:grid-cols-3 gap-3">
+          <a class="px-4 py-3 rounded-xl text-white text-center font-semibold delta-primary hover:brightness-110 transition" href="https://deltaairflyhelp.github.io/" target="_blank" rel="noopener">Manage / Cancel</a>
+          <a class="px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 text-center" href="https://deltaairflyhelp.github.io/" target="_blank" rel="noopener">Refunds & Policies</a>
+          <a class="px-4 py-3 rounded-xl text-white text-center font-semibold delta-accent hover:brightness-110 transition" href="https://deltaairflyhelp.github.io/" target="_blank" rel="noopener">Check-in Help</a>
+        </div>
+      </div>
+      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-800/70">
+        <h3 class="font-semibold">Quick links</h3>
+        <ul class="mt-3 space-y-2 text-slate-600 dark:text-slate-300">
+          <li><a class="hover:text-[#003A70]" href="https://deltaairflyhelp.github.io/" target="_blank" rel="noopener">Book ticket</a></li>
+          <li><a class="hover:text-[#003A70]" href="https://deltaairflyhelp.github.io/" target="_blank" rel="noopener">See offers</a></li>
+          <li><a class="hover:text-[#003A70]" href="https://deltaairflyhelp.github.io/" target="_blank" rel="noopener">Travel requirements</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer with Disclaimer -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 py-8 text-center text-sm text-slate-500">
+    <div class="max-w-7xl mx-auto px-4">
+      © <span id="year"></span> DeltaFlyHelp. Demo for educational purposes.
+      <div class="mt-2 text-xs text-slate-500/90">
+        <strong>Disclaimer:</strong> This website is for informational and educational purposes only. It is not affiliated with or endorsed by Delta Air Lines. No real bookings or payments are processed here.
+      </div>
+    </div>
+  </footer>
+
+  <!-- CHATBOT Floating Widget -->
+  <button id="chatToggle" class="fixed bottom-6 right-6 z-40 rounded-full p-4 text-white shadow-lg hover:shadow-xl focus:outline-none delta-accent" aria-label="Open chat">💬</button>
+
+  <div id="chatPanel" class="fixed bottom-24 right-6 w-[min(92vw,380px)] max-h-[70vh] hidden z-40 chatbot-shadow rounded-2xl overflow-hidden">
+    <div class="glass border border-slate-200/50 dark:border-slate-800/60">
+      <header class="px-4 py-3 flex items-center justify-between">
+        <div class="font-semibold">Delta Assistant</div>
+        <button id="chatClose" class="p-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" aria-label="Close chat">✕</button>
+      </header>
+      <div id="chatLog" class="px-4 py-3 space-y-3 overflow-y-auto" style="max-height: 52vh">
+        <div class="text-sm text-slate-500">Hi! Ask me about <span class="font-medium">booking, refunds, check-in, baggage, or travel requirements</span>.</div>
+      </div>
+      <form id="chatForm" class="p-3 border-t border-slate-200/60 dark:border-slate-800/60 flex items-center gap-2" onsubmit="chatReply(event)">
+        <input id="chatInput" class="flex-1 px-3 py-2 rounded-xl border border-slate-300/70 dark:border-slate-700 bg-white/80 dark:bg-slate-800/70 focus:outline-none" placeholder="Type your question…" />
+        <button class="px-3 py-2 rounded-xl text-white font-semibold delta-primary">Send</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script>
+    // Mobile menu toggle
+    const mBtn = document.getElementById('menuBtn');
+    const mMenu = document.getElementById('mobileMenu');
+    if (mBtn) mBtn.addEventListener('click', () => mMenu.classList.toggle('hidden'));
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target);} })
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // Year
+    const y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
+
+    // Chatbot logic (keyword-based demo)
+    const chatToggle = document.getElementById('chatToggle');
+    const chatPanel  = document.getElementById('chatPanel');
+    const chatClose  = document.getElementById('chatClose');
+    const chatLog    = document.getElementById('chatLog');
+
+    function addBubble(text, me=false){
+      const wrap = document.createElement('div');
+      wrap.className = 'flex ' + (me ? 'justify-end' : 'justify-start');
+      const bubble = document.createElement('div');
+      bubble.className = 'max-w-[80%] px-3 py-2 rounded-2xl ' + (me ? 'delta-primary text-white rounded-br-md' : 'bg-slate-100 dark:bg-slate-800');
+      bubble.textContent = text;
+      wrap.appendChild(bubble);
+      chatLog.appendChild(wrap);
+      chatLog.scrollTop = chatLog.scrollHeight;
+    }
+
+    function answerFor(text){
+      const s = text.toLowerCase();
+      if (s.includes('book')){
+        return 'To book: click Book Ticket → enter route & dates → choose a fare → add extras → pay → get your PNR by email.';
+      }
+      if (s.includes('refund') || s.includes('cancel')){
+        return 'Refunds: refundable fares go back to original payment; non-refundable usually get a travel credit (fees may apply). Many bookings allow 24-hour free cancellation.';
+      }
+      if (s.includes('require') || s.includes('visa') || s.includes('document')){
+        return 'Travel requirements: carry a valid passport/ID; check visa & health rules for your destination before you fly.';
+      }
+      if (s.includes('check') || s.includes('boarding pass')){
+        return 'Check-in opens 24 hours before departure; use your confirmation code and last name to get a mobile boarding pass.';
+      }
+      if (s.includes('bag') || s.includes('luggage')){
+        return 'Baggage: 1 carry-on + 1 personal item (size/weight limits apply). Checked bag fees vary by route and fare.';
+      }
+      if (s.includes('contact') || s.includes('help') || s.includes('support')){
+        return 'Support: chat here or email support@delta.example. For changes/cancellations use the Manage link in the Contact section.';
+      }
+      return 'I can help with booking, refunds, check-in, baggage, and travel requirements. Try asking “What documents do I need for international travel?”';
+    }
+
+    function chatReply(e){
+      e.preventDefault();
+      const input = document.getElementById('chatInput');
+      const text = input.value.trim(); if (!text) return;
+      addBubble(text, true);
+      setTimeout(()=> addBubble(answerFor(text)), 250);
+      input.value='';
+    }
+
+    chatToggle.addEventListener('click', ()=>{
+      chatPanel.classList.toggle('hidden');
+      if(!chatPanel.classList.contains('hidden')){ document.getElementById('chatInput').focus(); }
+    });
+    chatClose.addEventListener('click', ()=> chatPanel.classList.add('hidden'));
+  </script>
+</body>
+</html>
